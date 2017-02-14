@@ -1,0 +1,44 @@
+<head>
+  <title>pr-join-test</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> home }}
+</body>
+
+<template name="item">
+  <li>{{ name }} - {{ _id }}</li>
+</template>
+
+<template name="home">
+  <h2>Rooms</h2>
+  <ol>
+    {{#each rooms }}
+      {{#if userRooms.count }}
+          <li>{{ name }} - {{ _id }} <button id="addUserRoom" type="button">Add userRoom</button></li>
+      {{ else }}
+        {{> item }}
+      {{/if}}
+      <ol>
+        {{#each userRooms }}
+          <li>{{ name }} - {{ _id }} <button id="removeUserRoom" type="button">Remove</button></li>
+          <ul>
+            {{#each roomUser }}
+              {{> item }}
+            {{/each}}
+          </ul>
+        {{/each}}
+      </ol>
+    {{/each}}
+  </ol>
+  <br>
+
+  <h2>Users</h2>
+  <ol>
+    {{#each users }}
+      {{> item }}
+    {{/each}}
+  </ol>
+</template>
